@@ -35,13 +35,13 @@ header {
 	width: 100%;
 	margin-bottom: 20px;
 }
-main { height: 300px; }
 
-
-footer {
-	padding: 10px;
-	background-color: var(--cuaternario);
+main {
+    min-height: 60vh !important; /* Ocupa al menos el 60% de la pantalla */
+    padding-bottom: 20px  !important;/* Espacio interno al final del contenido */
 }
+
+
 h1, h2 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 26px;
@@ -190,14 +190,7 @@ nav li {
 	border-radius: 50%;
 }
 
-/* PIE DE PÁGINA */
 
-footer ul, footer p {
-	width: 480px;
-	padding: 10px 0;
-	text-align: center;
-	margin: auto;
-}
 
 /* MEDIA QUERIES */
 
@@ -225,11 +218,21 @@ footer ul, footer p {
 	main { height: 1200px; }
 }
 
+
+/* PIE DE PÁGINA */
+
+footer ul, footer p {
+	width: 480px;
+	padding: 10px 0;
+	text-align: center;
+	margin: auto;
+}
 footer {
     background-color: var(--secundario);
     color: var(--primario);
     padding: 40px 20px;
-    margin-top: -350px;
+    margin-top: -400px;
+	height: 400px;
     text-align: center;
     clear: both; /* Evita que los floats de arriba lo tapen */
 }
@@ -244,11 +247,8 @@ footer ul {
 }
 
 footer a {
-    color: var(--terciario) !important;
+    color: black;
     font-weight: bold;
     text-decoration: none;
 }
 
-footer a:hover {
-    text-decoration: underline;
-}
