@@ -35,7 +35,9 @@ header {
 	width: 100%;
 	margin-bottom: 20px;
 }
-main { height: 3500px; }
+main { height: 300px; }
+
+
 footer {
 	padding: 10px;
 	background-color: var(--cuaternario);
@@ -221,4 +223,32 @@ footer ul, footer p {
 	.col-4 { width: 33%; }
 	#letras>li { padding: 1%; }
 	main { height: 1200px; }
+}
+
+footer {
+    background-color: var(--secundario);
+    color: var(--primario);
+    padding: 40px 20px;
+    margin-top: -350px;
+    text-align: center;
+    clear: both; /* Evita que los floats de arriba lo tapen */
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+footer a {
+    color: var(--terciario) !important;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
 }
