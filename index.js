@@ -3,15 +3,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const paginacionContainer = document.getElementById('paginacion');
     const letrasLinks = document.querySelectorAll('#letras a');
     
+    // Identificador único por página (ej: /estrenos.html)
+    const pageId = window.location.pathname; 
     const itemsPerPage = 6;
-    let currentPage = 1;
+
+    // Recuperamos la página específica de ESTE html
+    let currentPage = parseInt(localStorage.getItem('ultimaPagina_' + pageId)) || 1;
 
     function displayGallery() {
         items.forEach(item => item.style.display = 'none');
+        
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const itemsToShow = items.slice(start, end);
+        
         itemsToShow.forEach(item => item.style.display = 'block');
+
+        // Guardamos la página usando el ID único
+        localStorage.setItem('ultimaPagina_' + pageId, currentPage);
+
         renderPagination();
     }
 
@@ -24,53 +34,57 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnPrev = document.createElement('a');
         btnPrev.href = "#";
         btnPrev.innerHTML = "&laquo; Anterior";
-        if (currentPage === 1) btnPrev.style.opacity = "0.5"; 
-        btnPrev.addEventListener('click', (e) => {
+        btnPrev.className = (currentPage === 1) ? "disabled" : "";
+        btnPrev.onclick = (e) => {
             e.preventDefault();
             if (currentPage > 1) {
                 currentPage--;
                 displayGallery();
+                window.scrollTo(0,0);
             }
-        });
+        };
         paginacionContainer.appendChild(btnPrev);
 
-        // Indicador de Página Actual (puedes añadir números si prefieres)
+        // Texto de página
         const info = document.createElement('span');
         info.textContent = ` Página ${currentPage} de ${totalPages} `;
-        info.style.padding = "0 15px";
         paginacionContainer.appendChild(info);
 
         // Botón Siguiente
         const btnNext = document.createElement('a');
         btnNext.href = "#";
         btnNext.innerHTML = "Siguiente &raquo;";
-        if (currentPage === totalPages) btnNext.style.opacity = "0.5";
-        btnNext.addEventListener('click', (e) => {
+        btnNext.className = (currentPage === totalPages) ? "disabled" : "";
+        btnNext.onclick = (e) => {
             e.preventDefault();
             if (currentPage < totalPages) {
                 currentPage++;
                 displayGallery();
+                window.scrollTo(0,0);
             }
-        });
+        };
         paginacionContainer.appendChild(btnNext);
     }
 
-    letrasLinks.forEach((link, index) => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-            if (link.textContent === '#') {
-                currentPage = 1;
-            } else {
-                currentPage = index; 
-            }
-            const totalPages = Math.ceil(items.length / itemsPerPage);
-            if (currentPage > totalPages) {
-                alert("Esta página (Letra " + link.textContent + ") aún no tiene películas.");
-                currentPage = 1;
-            }
-            displayGallery();
+    // Lógica para el menú de letras (si existe en el HTML)
+    if (letrasLinks.length > 0) {
+        letrasLinks.forEach((link, index) => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (link.textContent === '#') {
+                    currentPage = 1;
+                } else {
+                    currentPage = index; 
+                }
+                
+                const totalPages = Math.ceil(items.length / itemsPerPage);
+                if (currentPage > totalPages) {
+                    currentPage = 1;
+                }
+                displayGallery();
+            });
         });
-    });
+    }
 
     displayGallery();
 });
