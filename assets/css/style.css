@@ -175,19 +175,33 @@ nav li {
 /* PAGINACIÓN */
 
 #paginacion {
-	width: 320px;
-	height: 40px;
-	margin: auto;
-	clear: both;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+    clear: both;
 }
+
 #paginacion a {
-	display: inline-block;
-	padding: 8px 16px;
+    background-color: var(--cuaternario);
+    color: var(--secundario);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
 }
-#paginacion a.active {
-	background-color: var(--terciario);
-	color: var(--primario);
-	border-radius: 50%;
+
+#paginacion a:hover {
+    background-color: var(--terciario);
+    color: var(--primario);
+}
+
+#paginacion span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: var(--secundario);
 }
 
 

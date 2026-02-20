@@ -8,48 +8,61 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function displayGallery() {
         items.forEach(item => item.style.display = 'none');
-
         const start = (currentPage - 1) * itemsPerPage;
         const end = start + itemsPerPage;
-        
         const itemsToShow = items.slice(start, end);
         itemsToShow.forEach(item => item.style.display = 'block');
-
         renderPagination();
     }
 
     function renderPagination() {
         const totalPages = Math.ceil(items.length / itemsPerPage);
         if (!paginacionContainer) return;
-        
         paginacionContainer.innerHTML = '';
 
-        for (let i = 1; i <= totalPages; i++) {
-            const btn = document.createElement('a');
-            btn.href = "#";
-            btn.textContent = i;
-            if (i === currentPage) btn.classList.add('active');
-
-            btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                currentPage = i;
+        // Botón Anterior
+        const btnPrev = document.createElement('a');
+        btnPrev.href = "#";
+        btnPrev.innerHTML = "&laquo; Anterior";
+        if (currentPage === 1) btnPrev.style.opacity = "0.5"; 
+        btnPrev.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage > 1) {
+                currentPage--;
                 displayGallery();
-                window.scrollTo({top: 0, behavior: 'smooth'});
-            });
-            paginacionContainer.appendChild(btn);
-        }
+            }
+        });
+        paginacionContainer.appendChild(btnPrev);
+
+        // Indicador de Página Actual (puedes añadir números si prefieres)
+        const info = document.createElement('span');
+        info.textContent = ` Página ${currentPage} de ${totalPages} `;
+        info.style.padding = "0 15px";
+        paginacionContainer.appendChild(info);
+
+        // Botón Siguiente
+        const btnNext = document.createElement('a');
+        btnNext.href = "#";
+        btnNext.innerHTML = "Siguiente &raquo;";
+        if (currentPage === totalPages) btnNext.style.opacity = "0.5";
+        btnNext.addEventListener('click', (e) => {
+            e.preventDefault();
+            if (currentPage < totalPages) {
+                currentPage++;
+                displayGallery();
+            }
+        });
+        paginacionContainer.appendChild(btnNext);
     }
 
     letrasLinks.forEach((link, index) => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            // Si el primer link es '#', index 1 es 'A', index 2 es 'B', etc.
             if (link.textContent === '#') {
                 currentPage = 1;
             } else {
                 currentPage = index; 
             }
-
             const totalPages = Math.ceil(items.length / itemsPerPage);
             if (currentPage > totalPages) {
                 alert("Esta página (Letra " + link.textContent + ") aún no tiene películas.");
