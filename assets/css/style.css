@@ -20,6 +20,23 @@
 }
 
 /* GENERAL */
+html, body {
+   
+    
+    /* Ocultar en Firefox */
+    scrollbar-width: none;
+    
+    /* Ocultar en IE y Edge antiguo */
+    -ms-overflow-style: none;
+}
+
+/* Ocultar en Chrome, Safari y Edge moderno */
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+    display: none;
+    width: 0 !important;
+    height: 0 !important;
+}
 
 html { box-sizing: border-box; }
 *, *::before, *::after { box-sizing: inherit; }
@@ -35,11 +52,13 @@ header {
 	width: 100%;
 	margin-bottom: 20px;
 }
-main { height: 3500px; }
-footer {
-	padding: 10px;
-	background-color: var(--cuaternario);
+
+main {
+    min-height: 60vh !important; /* Ocupa al menos el 60% de la pantalla */
+    padding-bottom: 20px  !important;/* Espacio interno al final del contenido */
 }
+
+
 h1, h2 {
 	font-family: 'Montserrat', sans-serif;
 	font-size: 26px;
@@ -173,29 +192,36 @@ nav li {
 /* PAGINACIÓN */
 
 #paginacion {
-	width: 320px;
-	height: 40px;
-	margin: auto;
-	clear: both;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 30px 0;
+    clear: both;
 }
+
 #paginacion a {
-	display: inline-block;
-	padding: 8px 16px;
-}
-#paginacion a.active {
-	background-color: var(--terciario);
-	color: var(--primario);
-	border-radius: 50%;
+    background-color: var(--cuaternario);
+    color: var(--secundario);
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background 0.3s;
 }
 
-/* PIE DE PÁGINA */
-
-footer ul, footer p {
-	width: 480px;
-	padding: 10px 0;
-	text-align: center;
-	margin: auto;
+#paginacion a:hover {
+    background-color: var(--terciario);
+    color: var(--primario);
 }
+
+#paginacion span {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: bold;
+    color: var(--secundario);
+}
+
+
 
 /* MEDIA QUERIES */
 
@@ -222,3 +248,38 @@ footer ul, footer p {
 	#letras>li { padding: 1%; }
 	main { height: 1200px; }
 }
+
+
+/* PIE DE PÁGINA */
+
+footer ul, footer p {
+	width: 480px;
+	padding: 10px 0;
+	text-align: center;
+	margin: auto;
+}
+footer {
+    background-color: var(--secundario);
+    color: var(--primario);
+    padding: 40px 20px;
+    margin-top: -400px;
+	height: 400px;
+    text-align: center;
+    clear: both; /* Evita que los floats de arriba lo tapen */
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    list-style: none;
+    margin-bottom: 20px;
+    padding: 0;
+}
+
+footer a {
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+}
+
