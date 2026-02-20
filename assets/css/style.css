@@ -266,11 +266,10 @@ footer ul, footer p {
 	margin: auto;
 }
 footer {
-    background-color: var(--secundario);
-    color: var(--primario);
+    background-color:#9E9E9E;
     padding: 40px 20px;
     margin-top: 100px;
-	height: 400px;
+	height: 300px;
     text-align: center;
     clear: both; /* Evita que los floats de arriba lo tapen */
 }
@@ -282,10 +281,12 @@ footer ul {
     list-style: none;
     margin-bottom: 20px;
     padding: 0;
-}
 
+}
+footer p,
 footer a {
-    color: black;
-    font-weight: bold;
+    color: white;
+	font-weight: bold;
     text-decoration: none;
 }
+
