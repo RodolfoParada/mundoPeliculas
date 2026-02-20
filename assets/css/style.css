@@ -54,8 +54,7 @@ header {
 }
 
 main {
-    min-height: 60vh !important; /* Ocupa al menos el 60% de la pantalla */
-    padding-bottom: 20px  !important;/* Espacio interno al final del contenido */
+   height: auto !important;
 }
 
 
@@ -262,7 +261,7 @@ footer {
     background-color: var(--secundario);
     color: var(--primario);
     padding: 40px 20px;
-    margin-top: -400px;
+    margin-top: 50px;
 	height: 400px;
     text-align: center;
     clear: both; /* Evita que los floats de arriba lo tapen */
