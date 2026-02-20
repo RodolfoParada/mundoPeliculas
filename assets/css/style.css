@@ -257,11 +257,19 @@ footer ul, footer p {
 	text-align: center;
 	margin: auto;
 }
+/* PIE DE PÁGINA */
+
+footer ul, footer p {
+	width: 480px;
+	padding: 10px 0;
+	text-align: center;
+	margin: auto;
+}
 footer {
     background-color: var(--secundario);
     color: var(--primario);
     padding: 40px 20px;
-    margin-top: 50px;
+    margin-top: 100px;
 	height: 400px;
     text-align: center;
     clear: both; /* Evita que los floats de arriba lo tapen */
@@ -281,4 +289,3 @@ footer a {
     font-weight: bold;
     text-decoration: none;
 }
-
